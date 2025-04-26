@@ -2,7 +2,7 @@
 
 atstation is a lightweight, client-side web app that shows the next train departure based on your current location and time of day. It uses the HTML5 Geolocation API to detect your nearest station and then selects the appropriate schedule for AM (outbound) or PM (return) trips. Customize the station list and timetable data to match your own train lines.
 
-![ss](ss.png)
+<img src="ss.png" width="245px" />
 
 ## Quick Start
 1. Download or clone the repository and open `index.html` in your browser.  
