@@ -53,7 +53,7 @@
     function testGetTimes(loc, tim, expected) {
       actual = getUpcomingTimes(loc, new Date("2025-01-01T" + tim + ":00"));
       if (JSON.stringify(actual) !== JSON.stringify(expected)) {
-        console.error(`Test failed for "${loc}" at [${tim}] => expected [${expected}], actual [${actual}]`);
+        console.log(`Test failed for "${loc}" at [${tim}] => expected [${expected}], actual [${actual}]`);
       } else {
         console.log(`Test passed for ${loc} at ${tim}`);
       }
@@ -84,10 +84,17 @@
       "ExampleStation3",
       "ExampleStation4"
     ];
+
     const s1 = stationNames[0];
     const s2 = stationNames[1];
     const s3 = stationNames[2];
     const s4 = stationNames[3];
+    const s1_s2 = s1 + "_" + s2;
+    const s2_s3 = s2 + "_" + s3;
+    const s3_s4 = s3 + "_" + s4;
+    const s4_s3 = s4 + "_" + s3;
+    const s3_s2 = s3 + "_" + s2;
+    const s2_s1 = s2 + "_" + s1;
 
     // 駅の緯度経度リスト
     const stationCoords = {};
@@ -95,13 +102,6 @@
     stationCoords[s2] = { lat: 35.0010, lon: 139.0010 };
     stationCoords[s3] = { lat: 35.0020, lon: 139.0020 };
     stationCoords[s4] = { lat: 35.0030, lon: 139.0030 };
-
-    const s1_s2 = s1 + "_" + s2;
-    const s2_s3 = s2 + "_" + s3;
-    const s3_s4 = s3 + "_" + s4;
-    const s4_s3 = s4 + "_" + s3;
-    const s3_s2 = s3 + "_" + s2;
-    const s2_s1 = s2 + "_" + s1;
 
     // 駅の時刻表リスト
     const timetables = {"AM": {}, "PM": {}};
@@ -142,7 +142,6 @@
     }
 
     function getNearestStation(pos) {
-      console.log(pos);
       let nearest = null, minD = Infinity;
       for (const name of stationNames) {
         const d = haversineDistance(pos, stationCoords[name]);
@@ -201,7 +200,7 @@
       const schEl  = document.getElementById('schedule');
 
       if (!routeKey || !timetables[period][routeKey]) {
-        infoEl.textContent = `ルート情報がありません`;
+        infoEl.textContent = `目的地が最寄りのため乗車不要です`;
         schEl.textContent  = '';
         return;
       }
