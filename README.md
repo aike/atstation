@@ -22,3 +22,7 @@ Only these three sections need editing—no other code changes required.
 - **Auto-refresh**: Updates every minute to keep countdowns accurate.  
 
 Note: The geolocation is not automatically updated; you must reload the page to get a new location.
+
+## Credit
+atstation program is licensed under MIT License.  
+Contact: X @aike1000
